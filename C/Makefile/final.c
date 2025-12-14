@@ -20,7 +20,7 @@ void numero_secreto(int *secret)
 
 void pedir_tentativas(int *tentativas)
 {
-    printf("Quantas tentativas? ");
+    printf("Quantas tentativas queres? ");
     scanf("%d" , tentativas);
 }
 
@@ -35,20 +35,22 @@ void verificar_palpite(int *palpite , int *secret , int *tentativas)
     if (*palpite > *secret)
     {
         printf("Mais Baixo\n");
-        *tentativas --;
-        printf("Tens %d restantes.\n" , *tentativas);
+        (*tentativas)--;
+        printf("Tens %d tentativas restantes.\n" , *tentativas);
     }
     else if (*palpite < *secret)
     {
         printf("Mais Alto\n");
-        *tentativas --;
+        (*tentativas)--;
         printf("Tens %d tentativas restantes.\n" , *tentativas);
     }
     else
     {
         printf("Acertaste\n");
+        return;
     }
 }
+
 
 int main(void)
 {
@@ -58,17 +60,19 @@ int main(void)
     numero_secreto(&secret);
     pedir_tentativas(&tentativas);
 
-    while (tentativas > 0)
+    do
     {
         pedir_palpite(&palpite);
         verificar_palpite(&palpite , &secret , &tentativas);
     }
+    while (tentativas > 0);
+
+    printf("Perdeste\n");
     printf("\n");
     printf("Debug\n");
-    printf("Número Secreto : %d" , secret);
+    printf("Número Secreto : %d\n" , secret);
 }
 
 
-// TODO : Fix tries output bug 
 // TODO : playAgain
 
