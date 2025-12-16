@@ -1,8 +1,12 @@
-#include <cs50.h>
 #include <stdio.h>
 
 int main(void)
 {
-    string s = "HI!";
+    char *words[] = {"Hello", "World!"};
     
+    printf("%s\n" , words[0]);
+    printf("%s\n" , words[1]);
+
+    printf("%c\n" , words[0][0]);
+    printf("%c\n" , words[1][1]);
 }
