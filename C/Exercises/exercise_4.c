@@ -1,4 +1,4 @@
-// README - Exercise =
+// README - Exercise to practise input validation
 
 #include <stdio.h>
 
