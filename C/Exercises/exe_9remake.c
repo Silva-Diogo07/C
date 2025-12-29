@@ -89,14 +89,18 @@ int main(void)
     int arr[100];
     int target;
 
-    printf("Number of elements: ");
-    scanf("%d", &n);
+    do
+    {
+        printf("Numbers of elements: ");
+        scanf("%d", &n);
+    }
+    while (n < 2 || n > 100);
 
     saveNumber(n, arr);
 
-    char option[100];
+    char option[15];
     printf("Enter how to order numbers ( < | > ): ");
-    scanf("%99s", option);
+    scanf(" %14s", option);
 
     int ascending; // 1 = crescente, 0 = decrescente
 
@@ -105,10 +109,15 @@ int main(void)
         high_to_low(n, arr);
         ascending = 0;
     }
-    else
+    else if (strcmp(option, "<") == 0)
     {
         low_to_high(n, arr);
         ascending = 1;
+    }
+    else
+    {
+        printf("Invalid option\n");
+        return 1;
     }
 
     printArr(n, arr);
