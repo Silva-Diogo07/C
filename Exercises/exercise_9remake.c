@@ -50,7 +50,7 @@ void printArr(int n, int arr[])
     printf("\n");
 }
 
-// Binary search única que funciona para ambas as ordens
+
 int binarySearch(int arr[], int n, int target, int ascending)
 {
     int low = 0;
