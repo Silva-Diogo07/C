@@ -20,7 +20,7 @@ int main()
     getchar();
     printf("Enter your full name: ");
     fgets(name, sizeof(name), stdin);
-    name[strlen(name) - 1] = '\0';
+    name[strcspn(name, "\n")] = '\0';
 
     printf("\n");
 
