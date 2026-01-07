@@ -9,17 +9,8 @@ typedef enum
     Calculators
 } Choice;
 
-int main()
+int switch_func(int program_type)
 {
-    int program_type = 0;
-
-    printf("Choose a type of program (1-3):\n");
-
-    printf("1. Converters\n");
-    printf("2. Games\n");
-    printf("3. Calculators\n\n");
-    scanf("%d", &program_type);
-
     switch (program_type)
     {
         case 1:
@@ -36,8 +27,23 @@ int main()
 
         default:
             printf("Please choose a valid type of program (1-3):\n ");
-            break;    
+            break;
     }
+    return program_type;
+}
+
+int main()
+{
+    int program_type = 0;
+
+    printf("Choose a type of program (1-3):\n");
+
+    printf("1. Converters\n");
+    printf("2. Games\n");
+    printf("3. Calculators\n\n");
+    scanf("%d", &program_type);
+
+    switch_func(program_type);
 
     return 0;
 }
