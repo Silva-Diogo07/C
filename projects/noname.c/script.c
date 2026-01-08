@@ -116,16 +116,50 @@ int main()
     int program = 0;
 
     printf("Choose a type of program (1-3):\n");
-
     printf("1. Converters\n");
     printf("2. Games\n");
     printf("3. Calculators\n\n");
-    scanf("%d", &program_type);
-    
+
+    // Lê a opção do utilizador e verifica se é um número válido
+    if (scanf("%d", &program_type) != 1)
+    {
+        printf("Invalid input.\n");
+
+        // Limpa o buffer de entrada para remover caracteres inválidos
+        while (getchar() != '\n');
+
+        return 1;
+    }
+
+    // Verifica se a opção está dentro do intervalo permitido (1 a 3)
+    if (program_type < 1 || program_type > 3)
+    {
+        printf("Invalid option. Try again.\n");
+        return 1;
+    }
+
     subMenu(program_type);
 
     printf("Choose a program:\n");
-    scanf("%d", &program);
+
+    // Lê o programa escolhido dentro do submenu
+    if (scanf("%d", &program) != 1)
+    {
+        printf("Invalid input.\n");
+
+        // Remove o input inválido que ficou no buffer
+        while (getchar() != '\n');
+
+        return 1;
+    }
+
+
+    // Verifica se a opção do submenu é válida (1 ou 2)
+    if (program < 1 || program > 2)
+    {
+        printf("Invalid option. Try again.\n");
+        return 1;
+    }
 
     if (program_type == 1)
     {
@@ -139,11 +173,6 @@ int main()
     {
         calculatorProgram(program);
     }
-    else
-    {
-        printf("Invalid option. Try again\n");
-        return 1;        
-    }
-
+ 
     return 0;
 }
