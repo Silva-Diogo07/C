@@ -142,7 +142,7 @@ int main()
     else
     {
         printf("Invalid option. Try again\n");
-        return 1;
+        return 1;        
     }
 
     return 0;
