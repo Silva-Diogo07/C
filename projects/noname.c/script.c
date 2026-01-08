@@ -14,15 +14,21 @@ int switch_func(int program_type)
     switch (program_type)
     {
         case 1:
-            printf("Converters\n");
+            printf("Converters:\n");
+            printf("1. Temperature Converter\n");
+            printf("2. Weight Converter\n");
             break;
 
         case 2:
-            printf("Games\n");
+            printf("Games:\n");
+            printf("1. Guess the Number\n");
+            printf("2. Rock Paper Scissors\n");
             break;
     
         case 3:
-            printf("Calculators\n");
+            printf("Calculators:\n");
+            printf("1. Circle Calculator\n");
+            printf("2. Compound Interest Calculator\n");
             break;
 
         default:
