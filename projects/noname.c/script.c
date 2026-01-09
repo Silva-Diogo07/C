@@ -112,27 +112,25 @@ void calculatorProgram(calculatorPrograms program)
 
 int main()
 {
-    int program_type = 0;
+    programType program_type = 0;
     int program = 0;
+    int input = 0;
 
     printf("Choose a type of program (1-3):\n");
     printf("1. Converters\n");
     printf("2. Games\n");
     printf("3. Calculators\n\n");
 
-    // Lê a opção do utilizador e verifica se é um número válido
-    if (scanf("%d", &program_type) != 1)
+    if (scanf("%d", &input) != 1)
     {
         printf("Invalid input.\n");
-
-        // Limpa o buffer de entrada para remover caracteres inválidos
         while (getchar() != '\n');
-
         return 1;
     }
 
-    // Verifica se a opção está dentro do intervalo permitido (1 a 3)
-    if (program_type < 1 || program_type > 3)
+    program_type = (programType)input;
+
+    if (program_type < Converters || program_type > Calculators)
     {
         printf("Invalid option. Try again.\n");
         return 1;
@@ -142,37 +140,33 @@ int main()
 
     printf("Choose a program:\n");
 
-    // Lê o programa escolhido dentro do submenu
     if (scanf("%d", &program) != 1)
     {
         printf("Invalid input.\n");
-
-        // Remove o input inválido que ficou no buffer
         while (getchar() != '\n');
-
         return 1;
     }
 
-
-    // Verifica se a opção do submenu é válida (1 ou 2)
     if (program < 1 || program > 2)
     {
         printf("Invalid option. Try again.\n");
         return 1;
     }
 
-    if (program_type == 1)
+    switch (program_type)
     {
-        convertersProgram(program);
+        case Converters:
+            convertersProgram((convertersPrograms)program);
+            break;
+
+        case Games:
+            gamesProgram((gamesPrograms)program);
+            break;
+
+        case Calculators:
+            calculatorProgram((calculatorPrograms)program);
+            break;
     }
-    else if (program_type == 2)
-    {
-        gamesProgram(program);
-    }
-    else if (program_type == 3)
-    {
-        calculatorProgram(program);
-    }
- 
+
     return 0;
 }
