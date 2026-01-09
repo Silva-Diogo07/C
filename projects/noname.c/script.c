@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <time.h>
+#include <stdlib.h>
 
 typedef enum
 {
@@ -43,7 +44,7 @@ void subMenu(programType program_type)
             printf("1. Guess the Number\n");
             printf("2. Rock Paper Scissors\n");
             break;
-    
+
         case Calculators:
             printf("Calculators:\n");
             printf("1. Circle Calculator\n");
@@ -63,7 +64,7 @@ void convertersProgram(convertersPrograms program)
         case tempConverter:
             printf("Hot Food\n");
             break;
-        
+
         case weightConverter:
             printf("Heavy Food\n");
             break;
@@ -72,15 +73,14 @@ void convertersProgram(convertersPrograms program)
             printf("Invalid option. Try again.\n");
             break;
     }
-        
-}   
+}
 
-void gamesProgram(gamesPrograms program)
+void gamesProgram(gamesPrograms program, int *tries, int *secret)
 {
     switch (program)
     {
         case GN:
-            printf("Guess the number\n");
+            play(tries, secret);
             break;
 
         case RPS:
@@ -111,90 +111,82 @@ void calculatorProgram(calculatorPrograms program)
     }
 }
 
-void numero_secreto(int *secret)
+void secret_number(int *secret)
 {
     int max = 0;
 
     printf("Enter the max number: ");
-    scanf("%d", &max);
-
-    srand(time(NULL));
+    if (scanf("%d", &max) != 1 || max <= 0)
+    {
+        printf("Invalid max number.\n");
+        return;
+    }
 
     *secret = (rand() % max) + 1;
 }
 
-void ask_for_trys(int *trys)
+void ask_for_trys(int *tries)
 {
     printf("Enter how many trys you want: ");
-    scanf("%d", trys);
+    scanf("%d", tries);
 }
 
 void ask_for_guess(int *guess)
 {
-    printf("Qual é o teu palpite? ");
+    printf("What's your guess? ");
     scanf("%d", guess);
 }
 
-bool check_guess(int *guess, int *secret, int *trys)
+bool check_guess(int *guess, int *secret, int *tries)
 {
     if (*guess > *secret)
     {
         printf("Lower\n");
-        (*trys)--;
+        (*tries)--;
         return false;
     }
-    // TODO: Se o palpite for < ; Se o palpite for = ;
+    else if (*guess < *secret)
+    {
+        printf("Higher\n");
+        (*tries)--;
+        return false;
+    }
+    else
+    {
+        printf("You guessed right!\n");
+        return true;
+    }
 }
 
-// START
-//    |
-//    v
-// Exibe menu principal:
-// 1. Converters
-// 2. Games
-// 3. Calculators
-//    |
-//    v
-// Lê input do usuário
-//    |
-//    v
-// Input válido?
-//  /   \
-// No    Yes
-//  |      |
-// "Invalid input"  Converte input para program_type
-// Retorna 1         |
-//                  v
-//          program_type válido? (1-3)
-//              /        \
-//            No          Yes
-//             |           |
-//      "Invalid option"   Chama subMenu(program_type)
-//      Retorna 1           |
-//                          v
-//                  Exibe submenu do tipo escolhido
-//                          |
-//                          v
-//                  Lê escolha do programa
-//                          |
-//                          v
-//                Input do programa válido? (1-2)
-//                      /       \
-//                    No         Yes
-//                     |           |
-//            "Invalid option"     switch(program_type)
-//            Retorna 1          /      |       \
-//                                |      |       |
-//                        Converters  Games  Calculators
-//                            |         |       |
-//                    Chama convertersProgram  ...
-//                            |
-//                          End
+void play(int *tries, int *secret)
+{
+    int guess;
+
+    ask_for_trys(tries);
+    secret_number(secret);
+
+    do
+    {
+        ask_for_guess(&guess);
+    }
+    while (!check_guess(&guess, secret, tries) && *tries > 0);
+
+    if (*tries == 0)
+    {
+        printf("You LOST!\n");
+    }
+}
+
 int main()
 {
+    srand(time(NULL));
+
     programType program_type = 0;
     int program = 0;
     int input = 0;
+
+    int tries = 0;
+    int secret = 0;
 
     printf("Choose a type of program (1-3):\n");
     printf("1. Converters\n");
@@ -240,7 +232,7 @@ int main()
             break;
 
         case Games:
-            gamesProgram((gamesPrograms)program);
+            gamesProgram((gamesPrograms)program, &tries, &secret);
             break;
 
         case Calculators:
