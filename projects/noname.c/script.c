@@ -110,6 +110,51 @@ void calculatorProgram(calculatorPrograms program)
     }
 }
 
+
+// START
+//    |
+//    v
+// Exibe menu principal:
+// 1. Converters
+// 2. Games
+// 3. Calculators
+//    |
+//    v
+// Lê input do usuário
+//    |
+//    v
+// Input válido?
+//  /   \
+// No    Yes
+//  |      |
+// "Invalid input"  Converte input para program_type
+// Retorna 1         |
+//                  v
+//          program_type válido? (1-3)
+//              /        \
+//            No          Yes
+//             |           |
+//      "Invalid option"   Chama subMenu(program_type)
+//      Retorna 1           |
+//                          v
+//                  Exibe submenu do tipo escolhido
+//                          |
+//                          v
+//                  Lê escolha do programa
+//                          |
+//                          v
+//                Input do programa válido? (1-2)
+//                      /       \
+//                    No         Yes
+//                     |           |
+//            "Invalid option"     switch(program_type)
+//            Retorna 1          /      |       \
+//                                |      |       |
+//                        Converters  Games  Calculators
+//                            |         |       |
+//                    Chama convertersProgram  ...
+//                            |
+//                          END
 int main()
 {
     programType program_type = 0;
