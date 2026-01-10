@@ -1,8 +1,12 @@
+#include <math.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
 #include <time.h>
 #include <stdlib.h>
+
+void runTemperatureConverter();
+void runWeightConverter();
 
 /* ===================== ENUMS ===================== */
 
@@ -68,11 +72,11 @@ void convertersProgram(convertersPrograms program)
     switch (program)
     {
         case tempConverter:
-            printf("Temperature Converter (not implemented yet)\n");
+            runTemperatureConverter();
             break;
 
         case weightConverter:
-            printf("Weight Converter (not implemented yet)\n");
+            runWeightConverter();
             break;
 
         default:
@@ -177,6 +181,115 @@ void runRockPaperScissors(void)
     printf("Rock Paper Scissors (not implemented yet)\n");
 }
 
+void runTemperatureConverter()
+{
+    int choice = 0;
+    float celcius = 0.0f;
+    float fahrenheit = 0.0f;
+
+    printf("1. Celcius to fahrenheit\n");
+    printf("2. Fahrenheit to celcius\n");
+
+    printf("Enter your choice (1 or 2): ");
+    scanf("%d", &choice);
+
+    if (choice == 1)
+    {
+        printf("Enter Celcius: ");
+        scanf("%f", &celcius);
+        fahrenheit = (celcius * 9 / 5) + 32;
+        printf("%.1f celcius is equal to %.1f fahrenheit\n", celcius, fahrenheit);
+    }
+    else if (choice == 2)
+    {
+        printf("Enter Fahrenheit: ");
+        scanf("%f", &fahrenheit);
+        celcius = (fahrenheit - 32) * 5 / 9;
+        printf("%.1f fahrenheit is equal to %.1f celcius\n", fahrenheit, celcius);
+    }
+    else
+    {
+        printf("Invalid choice\n");
+    }
+}
+
+void runWeightConverter()
+{
+    int choice = 0;
+    float pounds = 0.0f;
+    float kilograms = 0.0f;
+
+    printf("1. Kilograms to pounds\n");
+    printf("2. Pounds to kilograms\n");
+
+    printf("Enter your choice (1 or 2): ");
+    scanf("%d", &choice);
+
+    if (choice == 1)
+    {
+        printf("Enter Kilograms: ");
+        scanf("%f", &kilograms);
+        pounds = kilograms * 2.20462;
+        printf("%.2f kilograms is equal to %.2f pounds\n", kilograms, pounds);
+    }
+    else if (choice == 2)
+    {
+        printf("Enter Pounds: ");
+        scanf("%f", &pounds);
+        kilograms = pounds / 2.20462;
+        printf("%.2f pounds is equal to %.2f kilograms\n", pounds, kilograms);
+    }
+    else
+    {
+        printf("Invalid choice\n");
+    }
+}
+
+void runCircleCalculator()
+{
+    double radius = 0.0;
+    double area = 0.0;
+    double surfaceArea = 0.0;
+    double volume = 0.0;
+    const double PI = 3.14159;
+
+    printf("Enter the radius: ");
+    scanf("%lf", &radius);
+
+    area = PI * pow(radius, 2);
+    surfaceArea = 4 * PI * pow(radius, 2);
+    volume = (4.0 / 3.0) * PI * pow(radius, 3);
+
+    printf("Area: %.2lf\n", area);
+    printf("Surface Area: %.2lf\n", surfaceArea);
+    printf("Volume: %.2lf\n", volume);
+}
+
+void runCompoundCalculator()
+{
+    double principal = 0.0;
+    double interest_rate = 0.0;
+    int years = 0;
+    int timesCompounded = 0;
+    double total = 0.0;
+
+    printf("Enter the initial amount: ");
+    scanf("%lf", &principal);
+
+    printf("Enter the interest rate: ");
+    scanf("%lf", &interest_rate);
+
+    printf("Enter the number of years: ");
+    scanf("%d", &years);
+
+    printf("Enter the number of times compounded per year: ");
+    scanf("%d", &timesCompounded);
+
+    total = principal * pow(1 + interest_rate / timesCompounded, timesCompounded * years);
+
+    printf("After %d years the total will be £%.2lf\n", years, total);   
+}
+
 /* ===================== GAMES MENU ===================== */
 
 void gamesProgram(gamesPrograms program)
@@ -204,7 +317,7 @@ void calculatorProgram(calculatorPrograms program)
     switch (program)
     {
         case circleCalculator:
-            printf("Circle Calculator (not implemented yet)\n");
+            runCircleCalculator();
             break;
 
         case compundCalculator:
