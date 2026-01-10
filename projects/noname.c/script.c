@@ -265,6 +265,31 @@ void runCircleCalculator()
     printf("Volume: %.2lf\n", volume);
 }
 
+void runCompoundCalculator()
+{
+    double principal = 0.0;
+    double interest_rate = 0.0;
+    int years = 0;
+    int timesCompounded = 0;
+    double total = 0.0;
+
+    printf("Enter the initial amount: ");
+    scanf("%lf", &principal);
+
+    printf("Enter the interest rate: ");
+    scanf("%lf", &interest_rate);
+
+    printf("Enter the number of years: ");
+    scanf("%d", &years);
+
+    printf("Enter the number of times compounded per year: ");
+    scanf("%d", &timesCompounded);
+
+    total = principal * pow(1 + interest_rate / timesCompounded, timesCompounded * years);
+
+    printf("After %d years the total will be £%.2lf\n", years, total);   
+}
+
 /* ===================== GAMES MENU ===================== */
 
 void gamesProgram(gamesPrograms program)
@@ -292,7 +317,7 @@ void calculatorProgram(calculatorPrograms program)
     switch (program)
     {
         case circleCalculator:
-            printf("Circle Calculator (not implemented yet)\n");
+            runCircleCalculator();
             break;
 
         case compundCalculator:
