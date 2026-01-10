@@ -4,6 +4,8 @@
 #include <time.h>
 #include <stdlib.h>
 
+void runTemperatureConverter();
+
 /* ===================== ENUMS ===================== */
 
 typedef enum
@@ -68,7 +70,7 @@ void convertersProgram(convertersPrograms program)
     switch (program)
     {
         case tempConverter:
-            printf("Temperature Converter (not implemented yet)\n");
+            runTemperatureConverter();
             break;
 
         case weightConverter:
@@ -175,6 +177,38 @@ void runGuessTheNumber(void)
 void runRockPaperScissors(void)
 {
     printf("Rock Paper Scissors (not implemented yet)\n");
+}
+
+void runTemperatureConverter()
+{
+    int choice = 0;
+    float celcius = 0.0f;
+    float fahrenheit = 0.0f;
+
+    printf("1. Celcius to fahrenheit\n");
+    printf("2. Fahrenheit to celcius\n");
+
+    printf("Enter you choice (1 or 2): ");
+    scanf("%d", &choice);
+
+    if (choice == 1)
+    {
+        printf("Enter Celcius: ");
+        scanf("%f", &celcius);
+        fahrenheit = (celcius * 9 / 5) + 32;
+        printf("%.1f celcius is equal to %.1f fahrenheit\n", celcius, fahrenheit);
+    }
+    else if (choice == 2)
+    {
+        printf("Enter Fahrenheit: ");
+        scanf("%f", &fahrenheit);
+        celcius = (fahrenheit - 32) * 5 / 9;
+        printf("%.1f fahrenheit is equal to %.1f celcius\n", fahrenheit, celcius);
+    }
+    else
+    {
+        printf("Invalid choice\n");
+    }
 }
 
 /* ===================== GAMES MENU ===================== */
